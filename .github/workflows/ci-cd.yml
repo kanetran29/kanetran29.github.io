@@ -58,5 +58,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         publish_dir: kws/dist/browsers
-        publish_branch: gh-pages
+        publish_branch: topic/ci-cd
         deploy_key: ${{ secrets.GITHUB_TOKEN }} 
