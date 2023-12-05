@@ -19,6 +19,8 @@ jobs:
     steps:
     # ---- Checkout ----
     - uses: actions/checkout@v3
+    # ---- CD ----
+    - run: cd kws
     # ---- Setup Node.js ----
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
