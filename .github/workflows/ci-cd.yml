@@ -51,6 +51,6 @@ jobs:
     # ---- Deploy to GitHub Pages ----
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@v4
-      env:
+      with:
         token: ${{ secrets.ACCESS_TOKEN }}
         folder: dist/browser
