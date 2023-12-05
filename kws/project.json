@@ -10,7 +10,7 @@
       "executor": "@angular-devkit/build-angular:application",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/kws",
+        "outputPath": "dist",
         "index": "./src/index.html",
         "browser": "./src/main.ts",
         "polyfills": ["zone.js"],
@@ -80,7 +80,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "kws:build",
-        "staticFilePath": "dist/kws/browser"
+        "staticFilePath": "dist"
       }
     }
   }
