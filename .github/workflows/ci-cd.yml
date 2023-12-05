@@ -49,9 +49,10 @@ jobs:
       working-directory: kws
 
     # ---- Deploy to GitHub Pages ----
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        publish_dir: kws/dist/browsers
-        deploy_key: ${{ secrets.GITHUB_TOKEN }}
-        enable_jekyll: true
+    - name: Build and Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v4.5.0
+      env:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BASE_BRANCH: master
+        BRANCH: gh-pages
+        FOLDER: dist/browser
