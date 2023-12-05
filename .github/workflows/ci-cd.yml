@@ -1,4 +1,4 @@
-name: Simple CI/CD
+name: build, test and deploy
 
 on:
   push:
