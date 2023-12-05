@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Simple CI/CD
 
 on:
   push:
@@ -14,12 +14,17 @@ jobs:
     # ---- Checkout ----
     - uses: actions/checkout@v3
 
-    # ---- Setup Node.js ----
-    - name: Use Node.js 14.x
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14.x
-        cache: 'npm'
+     # ---- Custom Setup Node.js in kws ----
+    - name: Custom Setup Node.js in kws
+      run: |
+        cd kws
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+        export NVM_DIR="$HOME/.nvm"
+        [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+        nvm install 18
+        nvm use 18
+        npm install -g npm
+      shell: bash
 
     # ---- Install Dependencies ----
     - name: Install Dependencies
@@ -40,4 +45,4 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.3
       with:
-        path: ./kws/dist/kws/browsers
+        path: /dist/kws/browsers
