@@ -31,7 +31,6 @@ jobs:
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
         nvm install 18
         nvm use 18
-        cd kws
       shell: bash
 
     # ---- Install Dependencies ----
@@ -54,3 +53,10 @@ jobs:
       uses: actions/upload-artifact@v3.1.3
       with:
         path: kws/dist
+    # ---- Deploy to GitHub Pages ----
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        publish_dir: kws/dist/browsers
+        publish_branch: gh-pages
+        deploy_key: ${{ secrets.GITHUB_TOKEN }} 
