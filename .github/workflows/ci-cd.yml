@@ -14,21 +14,29 @@ jobs:
     # ---- Checkout ----
     - uses: actions/checkout@v3
 
-     # ---- Custom Setup Node.js in kws ----
+    # ---- Cache Node.js and npm packages ----
+    - name: Cache Node.js and npm packages
+      uses: actions/cache@v2
+      with:
+        path: ~/.nvm
+        key: node-npm-${{ runner.os }}-${{ hashFiles('kws/package-lock.json') }}
+        restore-keys: |
+          node-npm-${{ runner.os }}-
+
+    # ---- Custom Setup Node.js in kws ----
     - name: Custom Setup Node.js in kws
       run: |
-        cd kws
         curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
         export NVM_DIR="$HOME/.nvm"
         [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
         nvm install 18
         nvm use 18
-        npm install -g npm
+        cd kws
       shell: bash
 
     # ---- Install Dependencies ----
     - name: Install Dependencies
-      run: npm ci
+      run: npm install
       working-directory: kws
 
     # ---- Build ----
