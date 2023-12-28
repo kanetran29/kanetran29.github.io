@@ -1,0 +1,46 @@
+$font-weights: ( 'thin': 100, 'x-light': 200, 'light': 300, 'regular': 400, 'medium': 500, 'semi-bold': 600, 'bold': 700, 'x-bold': 800, 'heavy': 900 )
+$heading: ( 1: ('semi-bold', 64px, 76px), 2: ('semi-bold', 48px, 58px), 3: ('semi-bold', 36px, 44px), 4: ( 'medium', 36px, 44px), 5: ( 'semi-bold', 28px, 36px), 6: ( 'medium', 28px, 36px), 7: ( 'semi-bold', 20px, 28px))
+$body: ( 1: ( 'medium', 18px, 28px), 2: ( 'regular', 18px, 28px), 3: ( 'medium', 16px, 24px), 4: ( 'regular', 16px, 24px), 5: ( 'semi-bold', 16px, 24px), 6: ( 'medium', 14px, 20px), 7: ( 'regular', 14px, 20px), 8: ( 'medium', 12px, 12px))
+$button: ( 1: ( 'semi-bold', 18px, 24px), 2: ( 'semi-bold', 16px, 20px), 3: ( 'semi-bold', 14px, 16px))
+$field: (1: ( 'regular', 14px, 20px), 2: ( 'regular', 12px, 16px))
+
+/// Takes a source map and an index, and generates a font value using the font weights,
+/// font sizes, line heights, and font family defined in the source map.
+/// @param {Map} $source - The source map of font values
+/// @param {Number} $index - The index of the desired font value in the source map
+/// @return {String} The font value generated from the specified font properties
+
+@function gen-font($source, $index)
+    $element: map-get($source, $index)
+    $font-weight: map-get($font-weights, nth($element, 1))
+    $font-size: nth($element, 2)
+    $line-height: nth($element, 3)
+    $font-family: 'Inter'
+    @return #{$font-weight} #{$font-size}/#{$line-height} #{$font-family}
+
+
+/// Generates a map of class names and their properties based on a source map of font sizes and weights.
+/// @param {Map} $source - The source map of font sizes and weights.
+/// @param {String} $prefix - The prefix to be used for the class names.
+/// @return {Map} - A map of class names and their properties.
+@function gen-classes($source, $prefix)
+    $classes: ()
+    @for $i from 1 through length($source)
+        $class-name: 'typo-' + $prefix + '-' + $i
+        $class-props: ('font': gen-font($source, $i))
+        $classes: map-merge($classes,($class-name: $class-props))
+    @return $classes
+
+
+$all-classes: ()
+
+@each $source, $prefix in ($heading: 'heading', $body: 'body', $button: 'button', $field: 'field')
+    $classes: gen-classes($source, $prefix)
+    $all-classes: map-merge($all-classes, $classes)
+
+
+/// ex: typo-heading-1
+
+@each $class, $props in $all-classes
+    .#{$class}
+        font: map-get($props, 'font')

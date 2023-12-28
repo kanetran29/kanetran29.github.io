@@ -1,0 +1,17 @@
+$track-background: #e8e8e8
+$thumb-background: #777
+
+*
+    scrollbar-width: thin
+    scrollbar-color: $thumb-background $track-background
+    // Support customized scrollbar on Webkit & Blink
+    &::-webkit-scrollbar
+        width: 8px
+        height: 8px
+
+    &::-webkit-scrollbar-track
+        background: $track-background
+
+    &::-webkit-scrollbar-thumb
+        background: $thumb-background
+        border-radius: 4px

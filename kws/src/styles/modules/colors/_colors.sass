@@ -1,0 +1,72 @@
+$primary: ( 50: #deeafc, 100: #afcbf8, 200: #80adf4, 300: #518ef0, 400: #226fec, 500: #1157c8, 600: #0d439b, 700: #092f6c)
+$secondary: ( 50: #f1f1f1, 100: #dbdee0, 200: #b6bcc1, 300: #929ba2, 400: #6e7983, 500: #495764, 600: #253645)
+$success: ( 50: #f6fcf4, 100: #eef9e8, 200: #dcf3d1, 300: #bae7a3, 400: #97dc76, 500: #52c41a, 600: #42aa10)
+$warning: ( 100: #fffbeb, 200: #fef3c7, 300: #fde68a, 400: #fcd34d, 500: #fbbf24, 600: #f59e0b, 700: #f38200)
+$danger: ( 100: #fef2f2, 200: #fee2e2, 300: #fecaca, 400: #fca5a5, 500: #f87171, 600: #ef4444, 700: #dc2626)
+$informative: ( 100: #eff6ff, 200: #dbeafe, 300: #bfdbfe, 400: #93c5fd, 500: #60a5fa, 600: #3b82f6, 700: #2563eb)
+$text: ( default: #33343e, subdued: #8b8c99, disabled: #b6bcc1)
+$background: ( disable: #f9f9f9, hover: #f9f9fc, title-table: #ececf6)
+$hover: ( default: #f9f9f9)
+$divider: ( default: #e6e6f3)
+
+/// Generates CSS custom properties for a given map of values, with an optional prefix.
+/// @param {Map} $source - A map of values to generate custom properties for.
+/// @param {String} [$prefix=''] - An optional prefix to add to the custom property names.
+/// Usage example: @include gen-vars($primary, 'primary')
+/// Generates custom properties with the format '--prefix--key: value'.
+@mixin gen-vars($source, $prefix: '')
+    @each $key, $value in $source
+        --color--#{$prefix}--#{$key}: #{$value}
+
+:root
+    @include gen-vars($primary, 'primary')
+    @include gen-vars($secondary, 'secondary')
+    @include gen-vars($success, 'success')
+    @include gen-vars($warning, 'warning')
+    @include gen-vars($danger, 'danger')
+    @include gen-vars($informative, 'informative')
+    @include gen-vars($text, 'text')
+    @include gen-vars($background, 'background')
+    @include gen-vars($hover, 'hover')
+    @include gen-vars($divider, 'divider')
+    --color--secondary--white: #ffffff
+    --color--divider: #ddddee
+    --color--calendar-border: #e5e5e5
+    --color--dark--2: #87898e
+    --color--light--3: #dfdfe6
+
+
+/// Calculates the contrast color for a given color, based on the YIQ color model.
+/// @param {Color} $color - The color to calculate the contrast color for.
+/// @return {Color} - The contrast color (either black or white).
+@function contrast-color($color)
+    $r: red($color)
+    $g: green($color)
+    $b: blue($color)
+    $yiq: calc((($r * 299) + ($g * 587) + ($b * 114)) / 1000)
+
+    @if ($yiq >=128)
+        @return #000
+    @else
+        @return #fff
+
+
+
+/// Adds a "contrast" key to a color map, with values calculated using the `contrast-color` function.
+/// @param {Map} $map - The color map to add contrast to.
+/// @return {Map} - The modified color map with the "contrast" key and values.
+@function add-contrast($map)
+    $contrast: ()
+
+    @each $key, $value in $map
+        $contrast: map-merge($contrast,($key: contrast-color($value)))
+
+    @return map-merge($map,(contrast: $contrast))
+
+
+$primary: add-contrast($primary)
+$secondary: add-contrast($secondary)
+$success: add-contrast($success)
+$warning: add-contrast($warning)
+$danger: add-contrast($danger)
+$informative: add-contrast($informative)
