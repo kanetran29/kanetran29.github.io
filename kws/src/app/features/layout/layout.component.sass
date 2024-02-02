@@ -1,0 +1,14 @@
+:host
+    display: block
+    position: relative
+
+kws-scroll-view
+    display: block
+    ::ng-deep
+        .scroll-view
+            height: calc(100vh - var(--header--height, 0px) - var(--footer--height, 0px))
+            height: calc(70dvh - var(--header--height, 0px) - var(--footer--height, 0px))
+            &__container__content
+                background: green
+                height: 1000px
+                width: 2000px

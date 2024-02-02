@@ -1,0 +1,8 @@
+<div class="kws-header">
+    <div class="kws-header__pages" *ngIf="currentPage$ | async as cp">
+        @for (page of pages; track page.link) {
+            <div class="kws-header__page typo-heading-7" [class.active]="cp.link === page.link" (click)="router.navigate([page.link])">{{page.name}}</div>
+        }
+    </div>
+    <div class="kws-header__socials"></div>
+</div>

@@ -1,1 +1,1 @@
-export * from './header/header.component';
+export * from './scroll-view/scroll-view.component';

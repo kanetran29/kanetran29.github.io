@@ -1,0 +1,29 @@
+$base: "scroll-view"
+.#{$base}
+    overflow: hidden
+    margin: 8px
+    position: relative
+    &__container
+        overflow: auto
+        height: 100%
+        width: 100%
+        &:hover ~ .#{$base}__bar-overlay
+            opacity: 0
+        &__content
+            overflow: hidden
+    &__bar-overlay
+        transition: opacity 0.3s ease-in-out
+        opacity: 1
+        background: var(--color--background--default)
+        position: absolute
+        z-index: 1001
+        &.vertical
+            height: 100%
+            top: 0
+            right: 0
+            width: 8px
+        &.horizontal
+            width: 100%
+            bottom: 0
+            left: 0
+            height: 8px

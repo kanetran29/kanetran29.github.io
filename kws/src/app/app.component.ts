@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { HeaderComponent } from '@shared/components';
+import { LayoutComponent } from '@features/layout/layout.component';
 
 @Component({
   standalone: true,
-  imports: [RouterModule, HeaderComponent],
+  imports: [RouterModule, LayoutComponent],
   selector: 'kws-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass',
