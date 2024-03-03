@@ -2,12 +2,14 @@ $base: "kws-header"
 .#{$base}
     height: var(--header--height)
     background: #fbfbfb
+    width: 100%
     &__pages
-        display: flex
-        align-items: center
-        justify-content: center
-        gap: 64px
         height: 100%
-        width: 100%
         .#{$base}__page
             color: var(--color--text--default)
+            height: 28px
+            &.active
+                border-bottom: 2px solid var(--color--primary--500)
+    &__socials
+        mat-icon
+            transform: scale(calc( 30 / 24 ))

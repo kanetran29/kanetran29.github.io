@@ -1,8 +1,18 @@
-<div class="kws-header">
-    <div class="kws-header__pages" *ngIf="currentPage$ | async as cp">
-        @for (page of pages; track page.link) {
-            <div class="kws-header__page typo-heading-7" [class.active]="cp.link === page.link" (click)="router.navigate([page.link])">{{page.name}}</div>
+<header class="kws-header display-flex flex-center gap-64">
+    <div class="kws-header__pages display-flex flex-center gap-64">
+        @for (page of PAGES; track page.link)
+        {
+            <div class="kws-header__page typo-heading-7"
+                [class.active]="$currentPage()?.link === page.link"
+                (click)="router.navigate([page.link])">
+                {{page.name}}
+            </div>
         }
     </div>
-    <div class="kws-header__socials"></div>
-</div>
+    <div class="kws-header__socials display-flex flex-center gap-16">
+        @for (social of SOCIALS; track $index)
+        {
+            <mat-icon class="clickable" [svgIcon]="social.icon" (click)="openInNewTab(social.link)"></mat-icon>
+        }
+    </div>
+</header>

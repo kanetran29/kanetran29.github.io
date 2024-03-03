@@ -1,5 +1,34 @@
+@use 'sass:math'
+
 $base: "display"
-.#{base}-ellipsis
-    overflow: hidden
-    text-overflow: ellipsis
-    white-space: nowrap
+.#{$base}
+    &-ellipsis
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+    &-flex
+        display: flex
+
+.flex
+    &-center
+        align-items: center
+        justify-content: center
+    &-column
+        flex-direction: column
+    &-end
+        justify-content: flex-end
+    
+@for $i from 3 through 7
+    $gap: math.pow(2, $i)
+    .gap-#{$gap}
+        gap: #{$gap}px
+    .margin-left-#{$gap}
+        margin-left: #{$gap}px
+    .margin-right-#{$gap}
+        margin-right: #{$gap}px
+    .padding-left-#{$gap}
+        padding-left: #{$gap}px
+    .padding-right-#{$gap}
+        padding-right: #{$gap}px
+
+
