@@ -6,15 +6,6 @@
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"]
     },
-    "lint": {
-      "cache": true,
-      "inputs": [
-        "default",
-        "{workspaceRoot}/.eslintrc.json",
-        "{workspaceRoot}/.eslintignore",
-        "{workspaceRoot}/eslint.config.js"
-      ]
-    },
     "e2e": {
       "cache": true,
       "inputs": ["default", "^production"]
@@ -31,6 +22,15 @@
           "codeCoverage": true
         }
       }
+    },
+    "@nx/eslint:lint": {
+      "cache": true,
+      "inputs": [
+        "default",
+        "{workspaceRoot}/.eslintrc.json",
+        "{workspaceRoot}/.eslintignore",
+        "{workspaceRoot}/eslint.config.js"
+      ]
     }
   },
   "namedInputs": {
@@ -49,7 +49,7 @@
   },
   "generators": {
     "@nx/angular:application": {
-      "style": "scss",
+      "style": "sass",
       "linter": "eslint",
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
@@ -59,7 +59,7 @@
       "unitTestRunner": "jest"
     },
     "@nx/angular:component": {
-      "style": "scss"
+      "style": "sass"
     }
   },
   "defaultProject": "kws",

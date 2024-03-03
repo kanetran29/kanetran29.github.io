@@ -1,0 +1,14 @@
+<div class="kws-tech-stack display-flex flex-center flex-column">
+    <kws-title-and-sub [title]="'My Tech Stack'"
+                       [subtitle]="'Technologies I’ve been working with recently'">
+    </kws-title-and-sub>
+    <div class="kws-tech-stack__icons display-flex flex-center gap-64">
+        @for (tech of TECH_STACK; track $index)
+        {
+        <img [width]="120"
+             [height]="120"
+             [src]="nameToIconPath | pure:tech"
+             [alt]="tech" />
+        }
+    </div>
+</div>
