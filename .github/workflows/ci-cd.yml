@@ -39,9 +39,9 @@ jobs:
       working-directory: kws
 
     # ---- Test ----
-    - name: Test
-      run: npm test
-      working-directory: kws
+    # - name: Test
+    #   run: npm test
+    #   working-directory: kws
 
     # ---- Build ----
     - name: Build

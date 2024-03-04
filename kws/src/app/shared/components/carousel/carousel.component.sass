@@ -1,0 +1,77 @@
+.kws-carousel
+    width: 100%
+    height: 100%
+    position: relative
+    overflow: hidden
+    outline: none
+
+    &__container
+        width: 100%
+        height: calc(100% - 32px)
+        border-radius: 8px
+        overflow: hidden
+
+        &>button
+            position: absolute
+            z-index: 1
+            top: calc(50% - 16px)
+            transform: translateY(-50%)
+
+            &:first-of-type
+                left: 16px
+
+            &:last-of-type
+                right: 16px
+
+        &__list
+            width: 100%
+            height: 100%
+            margin: 0
+            padding: 0
+            list-style: none
+            display: flex
+            position: relative
+            flex-direction: row
+
+            &__slide
+                width: 100%
+                height: 100%
+                display: flex
+                flex-shrink: 0
+                position: relative
+
+                &:hover
+                    cursor: grab
+
+        &__arrow
+            color: white
+            z-index: 2
+
+            mat-icon
+                transform: scale(2)
+
+    &__indicators
+        z-index: 2
+        display: flex
+        position: absolute
+        flex-direction: row
+        bottom: 0px
+        left: 50%
+        transform: translateX(-50%)
+        outline: none
+
+        &:hover
+            cursor: pointer
+
+        &>div
+            width: 8px
+            height: 8px
+            background-color: #4B70C0
+            border-radius: 4px
+            margin: 8px
+            transition: all 0.3s ease-in-out
+            will-change: width background-color
+
+            &.selected
+                width: 24px
+                background-color: #00458f

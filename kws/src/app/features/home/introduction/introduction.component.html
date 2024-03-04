@@ -1,1 +1,15 @@
-<p>introduction works!</p>
+<div class="introduction">
+    <kws-carousel [interval]="5000">
+        @for (slide of BLOGS; track $index)
+        {
+            <kws-carousel-slide #matCarouselSlide
+                                [image]="slide.image">
+                <div class="introduction__content">
+                    <div class="introduction__content--title">{{ slide.title }}</div>
+                    <div class="introduction__content--subtitle">All eyes are on your assets integrity!
+                    </div>
+                </div>
+            </kws-carousel-slide>
+        }
+    </kws-carousel>
+</div>
