@@ -4,8 +4,7 @@
     <div class="kws-carousel__container">
         <ul #carouselList
             class=" kws-carousel__container__list"
-            role="listbox"
-            [style.flex-direction]="orientation === 'rtl' ? 'row-reverse' : 'row'">
+            role="listbox">
             @for (slide of slidesList; track $index)
             {
                 <li #carouselSlide
@@ -15,26 +14,22 @@
                     (panright)="onPan($event, carouselSlide)"
                     (panend)="onPanEnd($event, carouselSlide)"
                     (pancancel)="onPanEnd($event, carouselSlide)">
+                    <!-- Using ng-container instead of ng-content to assign pan gestures for slides -->
                     <ng-container [ngTemplateOutlet]="slide.templateRef"></ng-container>
                 </li>
             }
-
         </ul>
         @if (!hideArrows)
         {
             <button class="kws-carousel__container__arrow"
                     mat-icon-button
-                    type="button"
                     tabindex="-1"
-                    [color]="color"
                     (click)="previous()">
                 <mat-icon>keyboard_arrow_left</mat-icon>
             </button>
             <button class="kws-carousel__container__arrow"
                     mat-icon-button
-                    type="button"
                     tabindex="-1"
-                    [color]="color"
                     (click)="next()">
                 <mat-icon>keyboard_arrow_right</mat-icon>
             </button>
@@ -43,8 +38,7 @@
     @if (!hideIndicators)
     {
         <div class="kws-carousel__indicators"
-             tabindex="-1"
-             [style.flex-direction]="orientation === 'rtl' ? 'row-reverse' : 'row'">
+             tabindex="-1">
              @for (slide of slidesList; track $index)
              {
                 <div tabindex="-1"
