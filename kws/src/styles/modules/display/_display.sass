@@ -15,8 +15,12 @@ $base: "display"
         justify-content: center
     &-column
         flex-direction: column
+    &-row
+        flex-direction: row
     &-end
         justify-content: flex-end
+    &-wrap
+        flex-wrap: wrap
     
 @for $i from 3 through 7
     $gap: math.pow(2, $i)

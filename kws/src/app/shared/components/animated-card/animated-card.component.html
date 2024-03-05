@@ -1,0 +1,25 @@
+<div class='kws-animated-card'>
+    <kws-letter-icon [size]="'200px'" [letter]="title"></kws-letter-icon>
+    <div class="kws-animated-card__top" #top>
+        <div class="text-wrapper display-flex flex-column">
+            <div class="kws-animated-card__top__title typo-heading-6">
+                {{ title }}
+            </div>
+            <div class="kws-animated-card__top__description typo-heading-7" #refDescription>
+                {{ description }}
+            </div>
+        </div>
+    </div>
+    <div class="kws-animated-card__bottom">
+        <div class="kws-animated-card__bottom__tech-stack">
+            <label class="typo-body-3">Tech stack:</label>
+            <span class="typo-body-4"> {{ techStack }} </span>
+        </div>
+        <div class="kws-animated-card__bottom__role">
+            <label class="typo-body-3">Role:</label>
+            <span class="typo-body-4"> {{ role }} </span>
+        </div>
+        <div class="kws-animated-card__bottom__links">
+        </div>
+    </div>
+</div>

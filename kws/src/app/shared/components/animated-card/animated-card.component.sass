@@ -1,0 +1,85 @@
+@use '@angular/material' as mat
+
+$base: "kws-animated-card"
+$icon-size: 200px
+$padding: 30px
+$border-radius: 10px
+$bottom-height: calc(24px * 2 + 16px * 2)
+
+.#{$base}
+    width: calc( $icon-size + 2 * $padding)
+    height: calc( $icon-size + 2 * $padding + 36px + $bottom-height)
+    border-radius: $border-radius
+    position: relative
+    transition: all 0.3s ease-in-out
+    @include mat.elevation(4)
+
+    kws-letter-icon
+        position: absolute
+        top: $padding
+        left: $padding
+        will-change: transform
+        transition: transform 0.3s ease-in-out
+        z-index: 0
+
+    &__top
+        height: calc( 100% - $bottom-height )
+        width: 100%
+        border-top-left-radius: $border-radius
+        border-top-right-radius: $border-radius
+        background-image: url('/assets/images/banner.png')
+        z-index: 1
+        
+        .text-wrapper
+            justify-content: flex-end
+            width: 100%
+            height: 100%
+            transform: translateY(calc( var(--description-height) + $padding ))
+            transition: transform 0.3s ease-in-out
+            will-change: transform
+            z-index: 2
+            color: var(--color--text--bright)
+            padding: $padding
+            > *
+                text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25)
+        &__title
+            margin-bottom: 10px
+            font-weight: 600
+        &__description
+            font-weight: 400
+
+        &::before
+            content: ""
+            position: absolute
+            top: 0
+            left: 0
+            width: 0
+            height: calc( 100% - $bottom-height )
+            z-index: 0
+            transition: width 0.4s ease-in-out
+            will-change: width heigh
+            border-top-left-radius: $border-radius
+            border-top-right-radius: $border-radius
+            background: transparent linear-gradient(-125deg, transparent 0%, #01155950 100%) 0% 0% no-repeat padding-box
+
+    &__bottom
+        position: relative
+        z-index: 2
+        height: $bottom-height
+        padding: 16px
+        background: var(--color--background--default)
+        border-bottom-left-radius: $border-radius
+        border-bottom-right-radius: $border-radius
+        label
+            color: var(--color--text--default)
+    &:hover
+        @include mat.elevation(8)
+        transform: scale(1.005)
+        .#{$base}__top
+            &::before
+                width: 100%
+
+            .text-wrapper
+                transform: translateY(0)
+        kws-letter-icon
+            transform: rotate(12.75deg) scale(1.05)

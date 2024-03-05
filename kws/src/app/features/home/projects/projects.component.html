@@ -1,1 +1,16 @@
-<p>projects works!</p>
+<div class="kws-projects display-flex flex-center flex-column">
+    <kws-title-and-sub [title]="'Projects'"
+                       [subtitle]="'Things I’ve built so far'">
+    </kws-title-and-sub>
+    <div class="kws-projects__cards display-flex flex-center flex-wrap gap-32">
+        @for (project of PROJECTS; track $index)
+        {
+            <kws-animated-card
+                   [title]="project.name"
+                   [description]="project.description"
+                   [techStack]="project.techStack"
+                   [role]="project.role">
+            </kws-animated-card>
+        }
+    </div>
+</div>
