@@ -10,7 +10,7 @@ import { ListKeyManagerOption } from '@angular/cdk/a11y';
   template: `
   <ng-template>
     <div class="kws-carousel-slide" [style.background-image]="'url(' + image + ')'">
-      <div class="kws-carousel-slide__container">
+      <div class="kws-carousel-slide__container display-flex flex-column">
         <ng-content></ng-content>
       </div>
     </div>

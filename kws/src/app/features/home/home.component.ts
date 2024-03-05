@@ -9,8 +9,14 @@ import { ProjectsComponent } from './projects/projects.component';
   selector: 'kws-home',
   standalone: true,
   imports: [NgComponentOutlet],
-  templateUrl: './home.component.html',
-  styleUrl: './home.component.sass',
+  template:`
+    <div class="kws-home display-flex flex-column gap-64">
+      @for (section of SECTIONS; track $index)
+      {
+          <ng-container *ngComponentOutlet="section"/>
+      }
+    </div>
+  `
 })
 export class HomeComponent {
   readonly SECTIONS = [

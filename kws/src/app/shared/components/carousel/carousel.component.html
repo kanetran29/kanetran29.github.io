@@ -3,12 +3,12 @@
      tabindex="0">
     <div class="kws-carousel__container">
         <ul #carouselList
-            class=" kws-carousel__container__list"
+            class=" kws-carousel__container__list display-flex"
             role="listbox">
             @for (slide of slidesList; track $index)
             {
                 <li #carouselSlide
-                    class="kws-carousel__container__list__slide"
+                    class="kws-carousel__container__list__slide display-flex"
                     role="option"
                     (panleft)="onPan($event, carouselSlide)"
                     (panright)="onPan($event, carouselSlide)"
@@ -37,7 +37,7 @@
     </div>
     @if (!hideIndicators)
     {
-        <div class="kws-carousel__indicators"
+        <div class="kws-carousel__indicators display-flex flex-row"
              tabindex="-1">
              @for (slide of slidesList; track $index)
              {
