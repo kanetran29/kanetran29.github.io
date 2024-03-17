@@ -48,6 +48,10 @@ jobs:
       run: npm run build --if-present
       working-directory: kws
 
+    # ---- Copy nginx.conf ----
+    - name: Copy nginx.conf
+      run: cp kws/nginx.conf kws/dist/browser/nginx.conf
+
     # ---- Deploy to GitHub Pages ----
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@v4
