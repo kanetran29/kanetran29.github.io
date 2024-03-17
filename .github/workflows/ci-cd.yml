@@ -48,6 +48,11 @@ jobs:
       run: npm run build --if-present
       working-directory: kws
 
+    # ---- Copy 404.html from src to dist/browser ----
+    - name: Copy 404.html
+      run: cp kws/src/404.html kws/dist/browser
+      working-directory: kws
+
     # ---- Deploy to GitHub Pages ----
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
