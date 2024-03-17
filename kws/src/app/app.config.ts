@@ -1,5 +1,5 @@
 import { ApplicationConfig, Injectable, Optional, importProvidersFrom } from '@angular/core';
-import { provideRouter, withHashLocation } from '@angular/router';
+import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +14,7 @@ export class HammerConfig extends HammerGestureConfig {
 }
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(appRoutes, withHashLocation()),
+    provideRouter(appRoutes),
     provideAnimationsAsync(),
     importProvidersFrom(
       BrowserModule,

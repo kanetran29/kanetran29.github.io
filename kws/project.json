@@ -22,8 +22,7 @@
         "inlineStyleLanguage": "sass",
         "assets": [
           "./src/favicon.ico",
-          "./src/assets",
-          "./src/web.config"
+          "./src/assets"
         ],
         "styles": [
           "@angular/material/prebuilt-themes/indigo-pink.css",
