@@ -34,7 +34,7 @@ jobs:
       shell: bash
 
     # ---- Install Dependencies ----
-    - name: Install Dependencies
+    - name: Install
       run: npm install
       working-directory: kws
 
@@ -53,7 +53,7 @@ jobs:
       run: cp kws/nginx.conf kws/dist/browser/nginx.conf
 
     # ---- Deploy to GitHub Pages ----
-    - name: Build and Deploy
+    - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         token: ${{ secrets.ACCESS_TOKEN }}

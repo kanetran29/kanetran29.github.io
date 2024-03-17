@@ -17,7 +17,7 @@ export class TechStackComponent {
     'SASS',
     'TypeScript',
     'Material Design',
-    '.NET Core',
+    'NET Core',
     'EF Core',
     'MongoDB',
     'Firebase',
