@@ -1,9 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { ActivatedRoute, Router } from '@angular/router';
-import { map } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { filter, map } from 'rxjs';
 
 interface HeaderPage {
   name: string;
@@ -67,8 +67,12 @@ export class HeaderComponent {
   readonly PAGES = Object.values(PAGES_MAP);
   readonly SOCIALS = Object.values(SOCIALS_MAP);
 
-  $currentPage = toSignal<HeaderPage>(inject(ActivatedRoute).url.pipe(map(url => this.getPageFromPath(url[0].path))));
   router = inject(Router);
+
+  $currentPage = toSignal<HeaderPage>(this.router.events.pipe(
+    filter(event => event instanceof NavigationEnd),
+    map(event => this.getPageFromPath((event as NavigationEnd).url.replace('/', ''))))
+  );
 
   /**
    * Returns a page based on the provided path or defaults to the Home page.
