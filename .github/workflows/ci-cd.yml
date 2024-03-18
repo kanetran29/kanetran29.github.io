@@ -50,7 +50,7 @@ jobs:
 
     # ---- Create 404.html at dist/browser ----
     - name: Create 404.html
-      run: cp kws/src/index.html kws/dist/browser/404.html
+      run: cp kws/dist/browser/index.html kws/dist/browser/404.html
 
     # ---- Deploy to GitHub Pages ----
     - name: Deploy
