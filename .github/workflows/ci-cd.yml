@@ -34,7 +34,7 @@ jobs:
       shell: bash
 
     # ---- Install Dependencies ----
-    - name: Install Dependencies
+    - name: Install
       run: npm install
       working-directory: kws
 
@@ -48,8 +48,12 @@ jobs:
       run: npm run build --if-present
       working-directory: kws
 
+    # ---- Create 404.html at dist/browser ----
+    - name: Create 404.html
+      run: cp kws/dist/browser/index.html kws/dist/browser/404.html
+
     # ---- Deploy to GitHub Pages ----
-    - name: Build and Deploy
+    - name: Deploy
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         token: ${{ secrets.ACCESS_TOKEN }}

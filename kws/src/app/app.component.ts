@@ -12,7 +12,7 @@ const SOCIAL_ICONS: RegistryIcon[] = [
 
 @Component({
   standalone: true,
-imports: [RouterModule, LayoutComponent],
+  imports: [RouterModule, LayoutComponent],
   selector: 'kws-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.sass',
