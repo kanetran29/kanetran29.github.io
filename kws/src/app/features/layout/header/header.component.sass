@@ -9,8 +9,10 @@ $base: "kws-header"
             color: var(--color--text--default)
             height: 28px
             cursor: pointer
+            border-bottom: 2px solid transparent
+            transition: border-bottom-color 0.3s ease-in-out
             &.active
-                border-bottom: 2px solid var(--color--primary--500)
+                border-bottom-color: var(--color--primary--500)
     &__socials
         mat-icon
             transform: scale(calc( 30 / 24 ))
